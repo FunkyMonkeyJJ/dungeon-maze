@@ -1,6 +1,6 @@
 name: DungeonMaze
 version: @version@
-main: yhw.panda.dungeonmaze.DungeonMaze
+main: DungeonMaze
 api-version: 1.16
 commands:
   chestrefresh:
