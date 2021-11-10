@@ -20,8 +20,11 @@ import org.bukkit.inventory.meta.PotionMeta
 import org.bukkit.metadata.FixedMetadataValue
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType.*
+import yhw.panda.DungeonMaze
 import yhw.panda.DungeonMaze.getDungeonPlayer
 import yhw.panda.DungeonMaze.plugin
+import yhw.panda.DungeonPlayer
+import yhw.panda.DungeonTreasure
 import yhw.panda.DungeonTreasure.*
 import java.time.LocalDate
 
