@@ -1,7 +1,7 @@
 name: DungeonMaze
 version: @version@
-main: DungeonMaze
-api-version: 1.16
+main: yhw.panda.DungeonMaze
+api-version: 1.17
 commands:
   chestrefresh:
     description: A silly command to refresh the chests for the dungeon.

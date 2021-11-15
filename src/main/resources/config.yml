@@ -1,0 +1,30 @@
+maze:
+  world: world
+  hardcore-switch:
+    ==: org.bukkit.Location
+    world: world
+    x: 0.0
+    y: 63.0
+    z: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  upper-limit:
+    ==: org.bukkit.Location
+    world: world
+    x: -200.0
+    y: 70.0
+    z: 200.0
+    pitch: 0.0
+    yaw: 0.0
+  lower-limit:
+    ==: org.bukkit.Location
+    world: world
+    x: 200.0
+    y: 63.0
+    z: -200.0
+    pitch: 0.0
+    yaw: 0.0
+harcore-protocol:
+  # Multiply or add rewards by this when hardcore is enabled.
+  # Ex: 2 (2 times), x + 1 (1 more reward), x ^ 2 (squares rewards)
+  reward-bonus: 2

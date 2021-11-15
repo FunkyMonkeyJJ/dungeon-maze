@@ -1,8 +1,8 @@
 package yhw.panda
 
 import org.bukkit.*
-import org.bukkit.Material.*
 import org.bukkit.ChatColor.*
+import org.bukkit.Material.*
 import org.bukkit.block.Block
 import org.bukkit.block.Dispenser
 import org.bukkit.entity.Creeper
@@ -10,7 +10,8 @@ import org.bukkit.entity.EntityType
 import org.bukkit.entity.ThrownPotion
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.event.block.Action.*
+import org.bukkit.event.block.Action.PHYSICAL
+import org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityExplodeEvent
@@ -20,11 +21,8 @@ import org.bukkit.inventory.meta.PotionMeta
 import org.bukkit.metadata.FixedMetadataValue
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType.*
-import yhw.panda.DungeonMaze
 import yhw.panda.DungeonMaze.getDungeonPlayer
 import yhw.panda.DungeonMaze.plugin
-import yhw.panda.DungeonPlayer
-import yhw.panda.DungeonTreasure
 import yhw.panda.DungeonTreasure.*
 import java.time.LocalDate
 
