@@ -1,13 +1,4 @@
 maze:
-  world: world
-  hardcore-switch:
-    ==: org.bukkit.Location
-    world: world
-    x: 0.0
-    y: 63.0
-    z: 0.0
-    pitch: 0.0
-    yaw: 0.0
   upper-limit:
     ==: org.bukkit.Location
     world: world
@@ -24,7 +15,16 @@ maze:
     z: -200.0
     pitch: 0.0
     yaw: 0.0
+  hardcore-switch:
+    ==: org.bukkit.Location
+    world: world
+    x: 0.0
+    y: 63.0
+    z: 0.0
+    pitch: 0.0
+    yaw: 0.0
 harcore-protocol:
   # Multiply or add rewards by this when hardcore is enabled.
-  # Ex: 2 (2 times), x + 1 (1 more reward), x ^ 2 (squares rewards)
-  reward-bonus: 2
+  # Ex: * 2 (multiply by 2), / 3 (divide by 3), ^ 2 (squares rewards),
+  #     + 1 (1 more reward), - 4 (4 less rewards)
+  reward-bonus: * 2

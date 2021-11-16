@@ -14,6 +14,8 @@ import org.bukkit.scheduler.BukkitScheduler
 import java.io.File
 import java.io.IOException
 import java.util.*
+import java.util.regex.Pattern
+import kotlin.math.pow
 
 object DungeonMaze : JavaPlugin() {
     val plugin: Plugin = this
@@ -23,6 +25,7 @@ object DungeonMaze : JavaPlugin() {
     lateinit var dungeonListener: DungeonListener
     lateinit var scheduler: BukkitScheduler
 
+    private lateinit var hardcoreRewardBonus: String
     lateinit var hardcoreSwitchLocation: Location
     lateinit var upperMazeCorner: Location
     lateinit var lowerMazeCorner: Location
@@ -31,26 +34,14 @@ object DungeonMaze : JavaPlugin() {
         createConfig()
         treasureYml = createTreasure()
         try {
-            val worldName = config.getString("maze.world") ?: return
-            val world = server.getWorld(worldName)
-            hardcoreSwitchLocation = Location(
-                world,
-                config.getInt("maze.hardcore-switch.x").toDouble(),
-                config.getInt("maze.hardcore-switch.y").toDouble(),
-                config.getInt("maze.hardcore-switch.z").toDouble()
-            )
-            upperMazeCorner = Location(
-                world,
-                config.getInt("maze.upper-limit.x").toDouble(),
-                config.getInt("maze.upper-limit.y").toDouble(),
-                config.getInt("maze.upper-limit.z").toDouble()
-            )
-            lowerMazeCorner = Location(
-                world,
-                config.getInt("maze.lower-limit.x").toDouble(),
-                config.getInt("maze.lower-limit.y").toDouble(),
-                config.getInt("maze.lower-limit.z").toDouble()
-            )
+            upperMazeCorner = config.getLocation("maze.upper-limit")!!
+            lowerMazeCorner = config.getLocation("maze.lower-limit")!!
+            hardcoreSwitchLocation = config.getLocation(
+                "maze.hardcore-switch"
+            )!!
+            hardcoreRewardBonus = config.getString(
+                "maze.hardcore-protocol.reward-bonus"
+            )!!
         } catch (ignored: Exception) {
             Bukkit.getLogger().info(
                 "A problem occured with the config location values."
@@ -120,6 +111,31 @@ object DungeonMaze : JavaPlugin() {
         } catch (e: Exception) {
             e.printStackTrace()
             YamlConfiguration()
+        }
+    }
+
+    /**
+     * Finds the function that the hardcore reward bonus should follow
+     * and applies it to the given [stack].
+     *
+     * @return the value that is calculated.
+     */
+    fun hardcoreRewardBonus(stack: Int): Int {
+        val function = Regex("[+\\-*/^]").find(hardcoreRewardBonus)
+            ?: return stack
+        val value = Regex("[\\d]+").find(hardcoreRewardBonus)
+            ?: return stack
+        val mathValue = value.value.toInt()
+
+        return when (function.value) {
+            "+" -> stack + mathValue
+            "-" -> stack - mathValue
+            "*" -> stack * mathValue
+            "/" ->
+                if (mathValue == 0) return stack
+                else stack / mathValue
+            "^" -> stack.toDouble().pow(mathValue).toInt()
+            else -> stack
         }
     }
 
